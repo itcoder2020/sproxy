@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %} {% endblock %}</title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/static/assets/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/icon/themify-icons/themify-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/icon/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/fontawesome-pro-5.15.2/css/all.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/icon/icofont/css/icofont.css">
+    <!-- flag icon framework css -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/pages/flag-icon/flag-icon.min.css">
+    <!-- Menu-Search css -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/pages/menu-search/css/component.css">
+    <!-- flag icon framework css -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/pages/flag-icon/flag-icon.min.css">
+    <!-- Style.css -->
+     <link rel="stylesheet" type="text/css" href="/static/assets/css/style.css">
+    <!--color css-->
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/color/{{cfg['default']['color']}}.css" id="color"/>
+    <!-- Select 2 css -->
+    <link rel="stylesheet" href="/static/bower_components/select2/dist/css/select2.min.css?2" />
+    <!-- Multi Select css -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/multiselect/css/multi-select.css" />
+    <link href="/static/assets/pages/DataTables/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/toastr/build/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/switchery/dist/switchery.min.css">
+    {% block style %} {% endblock %}
+    <script type="text/javascript" src="/static/assets/js/jquery.min.js"></script>
+    <script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+        <style>
+            .loading {
+                background-color: #000000c4;
+                top: 0;
+                left: 0;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                z-index: 9998;
+                display: none;
+            }
+            .lds-hourglass {
+              display: inline-block;
+              position: fixed;
+              width: 64px;
+              height: 64px;
+              z-index: 9999;
+              top: 45%;
+              left: calc(50% - 32px);
+            }
+            .lds-hourglass:after {
+              content: " ";
+              display: block;
+              border-radius: 50%;
+              width: 0;
+              height: 0;
+              margin: 6px;
+              box-sizing: border-box;
+              border: 26px solid #fff;
+              border-color: #fff transparent #fff transparent;
+              animation: lds-hourglass 1.2s infinite;
+            }
+            @keyframes lds-hourglass {
+              0% {
+                transform: rotate(0);
+                animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+              }
+              50% {
+                transform: rotate(900deg);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+              }
+              100% {
+                transform: rotate(1800deg);
+              }
+            }
+        </style>
+</head>
+<body class="horizontal-fixed">
+<div class="loading" id="loading"><div class="lds-hourglass"></div></div>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div></div>
+        </div>
+    </div>
+    {% include 'nabar.html' %}    
+    {% include 'menu.html' %}    
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-header">
+                <div class="page-header-title">
+                    <h4>{{tit}}</h4>
+                </div>
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <i class="icofont icofont-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Pages</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">{{tit}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-body">
+                {% if not runing['active'] %}
+                <div class="col-sm-12 col-md-12">
+                    <div class="alert alert-danger background-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="icofont icofont-close-line-circled text-white"></i>
+                        </button>
+                        <strong>Waring!</strong> The device is not activated, please contact Admin
+                    </div>
+                </div>
+                {% endif %}
+            {% block body %} {% endblock %}
+        </div>
+        </div>
+    </div>
+    <footer class="page-footer flexbox">
+        <div class="text-muted ml-5">2020 - 2022 © <strong>Sproxy by <a href="https://fb.com/100006646270488" title="">Shally9xPro</a></strong>. All rights reserved</div>
+    </footer>
+        <!-- Main-body end-->
+        <!-- Warning Section Starts -->
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+    <![endif]-->
+        <!-- Warning Section Ends -->
+        <!-- Required Jqurey -->
+    <script type="text/javascript">
+    $(function(){
+    toastr.options = {
+      "closeButton": true,
+      "debug": true,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+    })
+    </script>
+        <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/static/bower_components/jquery-ui/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/tether/dist/js/tether.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- jquery slimscroll js -->
+        <script type="text/javascript" src="/static/bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+        <!-- modernizr js -->
+        <script type="text/javascript" src="/static/bower_components/modernizr/modernizr.js"></script>
+        <script type="text/javascript" src="/static/bower_components/modernizr/feature-detects/css-scrollbars.js"></script>
+        <!-- classie js -->
+        <script type="text/javascript" src="/static/bower_components/classie/classie.js"></script>
+        <!-- Rickshow Chart js -->
+        <script src="/static/bower_components/d3/d3.js"></script>
+        <script src="/static/bower_components/rickshaw/rickshaw.js"></script>
+        <!-- Morris Chart js -->
+        <script src="/static/bower_components/raphael/raphael.min.js"></script>
+        <script src="/static/bower_components/morris.js/morris.js"></script>
+        <!-- Horizontal-Timeline js -->
+        <script type="text/javascript" src="/static/assets/pages/dashboard/horizontal-timeline/js/main.js"></script>
+        <!-- amchart js -->
+        <script type="text/javascript" src="/static/assets/pages/dashboard/amchart/js/amcharts.js"></script>
+        <script type="text/javascript" src="/static/assets/pages/dashboard/amchart/js/serial.js"></script>
+        <script type="text/javascript" src="/static/assets/pages/dashboard/amchart/js/light.js"></script>
+        <script type="text/javascript" src="/static/assets/pages/dashboard/amchart/js/custom-amchart.js"></script>
+        <script src="/static/assets/pages/DataTables/datatables.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/toastr/build/toastr.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/classie/classie.js"></script>
+        <!-- Autosize js -->
+        <script type="text/javascript" src="/static/bower_components/autosize/dist/autosize.min.js"></script>
+    
+        <!-- i18next.min.js -->
+        <script type="text/javascript" src="/static/bower_components/i18next/i18next.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/jquery-i18next/jquery-i18next.min.js"></script>
+        <!-- Select 2 js -->
+        <script type="text/javascript" src="/static/bower_components/select2/dist/js/select2.full.min.js"></script>
+        <!-- Multiselect js -->
+        <script type="text/javascript" src="/static/bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+        <script type="text/javascript" src="/static/bower_components/multiselect/js/jquery.multi-select.js"></script>
+        <script type="text/javascript" src="/static/bower_components/switchery/dist/switchery.min.js"></script>
+        <!-- <script type="text/javascript" src="/static/assets/pages/advance-elements/swithces.js"></script> -->
+        <!-- Custom js -->
+        <script type="text/javascript" src="/static/assets/pages/dashboard/custom-dashboard.js"></script>
+        <script type="text/javascript" src="/static/assets/js/script.js"></script>
+        <script type="text/javascript" src="/static/assets/js/func.js"></script>
+        <script type="text/javascript" src="/static/assets/pages/store-js/store.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/moment/moment.js"></script>
+        <!-- <script type="text/javascript" src="/static/assets/pages/store-js/note.js"></script> -->
+        <script>
+    $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).ready(function() {
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: function() {
+                return $('#primary-popover-content').html();
+            }
+        });
+    });
+        </script>
+        {% block js %} {% endblock %}
+    </body>
+    <!-- bác nào cố tình bug Sproxy sẽ bị khóa thiết bị vĩnh viễn .Mong các bác dùng thiết bị 1 cách lành mạnh -->
+    </html>

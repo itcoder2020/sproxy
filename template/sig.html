@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tạo tài khoản hệ thống Sproxy</title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Shally9xPro">
+    <!-- Favicon icon -->
+    
+    <link rel="icon" href="/static/assets/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/toastr/build/toastr.min.css">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/icon/themify-icons/themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/icon/icofont/css/icofont.css">
+    <!-- Style.css -->
+     <link rel="stylesheet" type="text/css" href="/static/assets/css/style.css">
+    <!--color css-->
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/color/color-1.css" id="color"/>
+    <script type="text/javascript" src="/static/assets/js/jquery.min.js"></script>
+</head>
+    {% if task == 'login' %}
+        {% include 'login.html' %}
+    {% elif task == 'signup' %}
+        {% include 'signup.html' %}
+    {% endif %}
+    <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/tether/dist/js/tether.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="/static/bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="/static/bower_components/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="/static/bower_components/modernizr/feature-detects/css-scrollbars.js"></script>
+    <!--  -->
+    <script type="text/javascript" src="/static/bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/toastr/build/toastr.min.js"></script>
+    <!-- i18next.min.js -->
+    <script type="text/javascript" src="/static/bower_components/i18next/i18next.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/jquery-i18next/jquery-i18next.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/script.js"></script>
+    <!-- Custom js -->
+    <!--color script-->
+    <script type="text/javascript" src="/static/assets/js/common-pages.js"></script>
+<script type="text/javascript">
+    $(function() {
+        toastr.options = {
+            "closeButton": true,
+            "debug": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    });
+</script>
+</body>
+
+</html>

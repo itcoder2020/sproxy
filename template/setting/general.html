@@ -1,0 +1,69 @@
+<div class="card-header">
+    <h5>General</h5>
+    <div class="card-header-right">
+        <i class="icofont icofont-refresh"></i>
+    </div>
+</div>
+<div class="card-block">
+    <form>
+        <div class="row form-group">
+            <div class="col-sm-3 col-lg-4">
+                <label class="col-form-label">Always Work <span class="text-danger"> *</span></label>
+            </div>
+            <div class="col-sm-9 col-lg-8">
+                <input type="checkbox" class="js-alive" id="alive" onchange="alive_change()"/>
+                <input type="hidden" id="alive2" value="0" />
+            </div>
+        </div>
+        <li class="text-primary">Always active if enabled, the system will always keep the proxy active, can be reset IP midway</li>
+    </form>
+</div>
+<div class="card-block">
+    <form>
+        <div class="row form-group">
+            <div class="col-sm-3 col-lg-4">
+                <label class="col-form-label">Timeout Between Usb Start <span class="text-danger"> *</span></label>
+            </div>
+            <div class="col-sm-9 col-lg-8">
+                <div class="input-group input-group-dropdown">
+                    <input type="text" class="form-control" id="time_delay" value="{{cfg['default']['usb_timeout']}}" placeholder="Time Delay"/>
+                        <button type="button" class="btn btn-success" id="s_time_delay" onclick="set_timeout()">
+                            Save
+                        </button>
+                </div>
+            </div>
+        </div>
+        <li class="text-primary">Timeout when booting between usb, usb hub has poor power so increase timeout</li>
+    </form>
+</div>
+<div class="card-block">
+    <form>
+        <div class="row form-group">
+            <div class="col-sm-3 col-lg-4">
+                <label class="col-form-label">Method Reset IP Olax U90 <span class="text-danger"> *</span></label>
+            </div>
+            <div class="col-sm-9 col-lg-8">
+                <div class="input-group input-group-dropdown">
+                    <div class="form-radio">
+                        <div class="radio radio-inline">
+                            <label>
+                                <input type="radio" name="rs_u90" id="u90_normal" value="1">
+                                <i class="helper"></i>Normal (prioritized)
+                            </label>
+                        </div>
+                        <div class="radio radio-inline">
+                            <label>
+                                <input type="radio" name="rs_u90" id="u90_deep" value="2">
+                                <i class="helper"></i>Deep Reset (3 seconds slower)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+var alive = '{{cfg['default']['alive']}}';
+var u90rs = '{{cfg['resetip']['u90']}}';
+</script>

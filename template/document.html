@@ -1,0 +1,118 @@
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page header start -->
+            <div class="page-header">
+                <div class="page-header-title">
+                    <h4>Document</h4>
+                    <span>Tài Liệu API</span>
+                </div>
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <i class="icofont icofont-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">Document</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+             <div class="page-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Notes card start -->
+                        <div class="card">
+                            <div class="card-block note-card">
+                                <div class="note-box-wrapper row">
+                                    <div class="note-box-aside col-lg-12 col-xl-3">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h5><i class="icofont icofont-file-text m-r-5"></i>Notes</h5>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input class="form-control form-control-lg" type="text" id="Note-search" placeholder="Tìm kiếm notes">
+                                            </div>
+                                        </div>
+                                        <div class="notes-list">
+                                            <ul id="Note-list" class="Note-list list-group"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="note-box-content col-lg-12 col-xl-9">
+                                        <div class="Note-header">
+                                            <div class="Note-created f-right">
+                                                <span class="Note-created__on">Note Created On</span>
+                                                <span class="Note-created__date" id="Note-created__date"></span>
+                                            </div>
+                                            <a href="#" class="btn btn-md btn-primary hidden-xs Note-add">Add New +</a>
+                                        </div>
+                                        <div class="note-body">
+                                            <div class="note-write">
+                                                <textarea id="Note-pad" class="form-control" rows="17" placeholder="Nhập nội dung"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Notes card end -->
+                    </div>
+                </div>
+            </div>
+            <!-- Page body end -->
+        </div>
+    </div>
+    <!-- Main-body end -->
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="assets/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="assets/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="assets/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="assets/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="assets/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+<script type="text/javascript">
+$(function() {
+    if (!lc_get('demo_imported')) {
+        import_note();
+        location.reload()
+    } 
+})
+</script>

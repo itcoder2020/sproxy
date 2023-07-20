@@ -1,0 +1,30 @@
+<div class="card-header">
+    <h5>Update Sproxy</h5>
+    <div class="card-header-right">
+        <i class="icofont icofont-refresh"></i>
+    </div>
+</div>
+<div class="card-block">
+    <button type="button" id="btn-checkupdate" class="btn btn-info btn-round" onclick="check_new_version()">Check new version</button>
+    <button type="button" id="btn-update" class="btn btn-success btn-round" onclick="update_proxy()">Update Sproxy Software</button>
+<div id="des_newvs" class="mt-4">
+<li><span class="text-success">Version:</span> <span id="new_vs"></span></li>
+<li><span class="text-success">Description:</span> <span id="des_vs"></span></li>
+<div class="col-sm-12 col-md-12 mt-4">
+    <div class="alert alert-danger background-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="icofont icofont-close-line-circled text-white"></i>
+        </button>
+        Please do not power off the device or disconnect from the network, the above may cause a system failure
+    </div>
+</div>
+<div class="col-sm-12 col-md-12 mt-4">
+    <div class="alert alert-warning background-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="icofont icofont-close-line-circled text-white"></i>
+        </button>
+        After the update is successful, the system will reboot the device
+    </div>
+</div>
+</div>
+</div>

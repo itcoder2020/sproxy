@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}Sproxy {{name_device}} - {{tit}}{% endblock %}
+{% block body %}
+<style>
+.dropdown-menu-right{
+    left: 50px;
+}
+    </style>
+    <div class="card-block email-card">
+        <div class="row">
+            <!-- Left-side section start -->
+            <div class="col-lg-12 col-xl-3">
+                <div class="user-head row">
+                    <div class="user-face">
+                        <img src="/static/assets/images/sp.png" class="img-60 rounded-circle" alt="User-Profile-Image">
+                    </div>
+                    <div class="user-name">
+                        <span>Sproxy {{name_device}}</span>
+                        <span>Sproxy 4G</span>
+                    </div>
+                </div>
+                <div class="user-body">
+                    <!-- <div class="card-block"> -->
+                        <!-- <div class="col-sm-12"> -->
+                            <div class="input-group input-group-dropdown mt-3">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        CMD
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*101#')">*101#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*102#')">*102#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*100*#')">*100*#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*103#')">*103#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*104#')">*104#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*105#')">*105#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*0#')">*0#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*098#')">*098#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*199#')">*199#</a>
+                                        <a class="dropdown-item" href="#!" onclick="$('#s_command').val('*911#')">*911#</a>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="s_command" placeholder="Enter USSD Command">
+                                    <button type="button" class="btn btn-success" id="send_ussd" onclick="send_ussd()">
+                                        Send
+                                    </button>
+                            </div>
+                        <!-- </div> -->
+                    <!-- </div> -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="form-group row">
+                            <div class="col-sm-12">
+                                <center>
+                                <div class="checkbox-fade fade-in-primary">
+                                    <label>
+                                        <input type="checkbox" onClick="checkall2(this);"><span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span><span class="text-inverse">Select All</span>
+                                    </label>
+                                </div>
+                            </center>
+                            </div>
+                            <div class="col-sm-12 mt-2">
+                            <div class="form-group row" id="s_port"></div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Left-side section end -->
+            <!-- Right-side section start -->
+            <div class="col-lg-12 col-xl-9">
+                <div class="mail-box-head row">
+                    <div class="col-sm-3">
+                        <h3>{{tit}}</h3>
+                    </div>
+                    <div class="col-md-9">
+                        <form class="f-right">
+                            <div class="right-icon-control">
+                                <button type="button" class="btn btn-sm btn-light" onclick="post('allport','sms','get')">Reload List Port</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mail-body">
+                    <div class="mail-body-content">
+                        <div class="table-responsive">
+                            <div class="card">
+                                <!-- <div class="card-header">
+                                    <h5>Danh Sách SMS</h5>
+                                    <div class="card-header-right">
+                                        <i class="icofont icofont-refresh"></i>
+                                    </div>
+                                </div> -->
+                                <div class="card-block">
+                                    <div class="table-responsive dt-responsive">
+                                        <table id="dt-ussd" class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="2%">
+                                                        <div class="checkbox-fade fade-in-primary">
+                                                            <label>
+                                                                <input type="checkbox" onClick="checkall(this);cache_select()"><span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span><span class="text-inverse">#</span>
+                                                            </label>
+                                                        </div>
+                                                    </th>
+                                                    <th width="5%">Usb:Port</th>
+                                                    <th width="5%" data-toggle="tooltip" data-placement="left" title="" data-original-title="USB Support USSD or No">EMEI | USSD ?</th>
+                                                    <th width="5%">Date</th>
+                                                    <th width="5%">CMD</th>
+                                                    <th width="30%">Content</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right-side section end -->
+        </div>
+    </div>
+<div id="view_ussd" class="modal fade bd-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title"><i class="fa fa-send"></i> USSD Resporn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                <div class="form-group row">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="ms_fr">CMD : <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="u_cmd" placeholder="Message are sent from" disabled>
+                        </div>
+                        <div class="col-sm-2 col-form-label">
+                            <label for="ms_port">Port - EMEI : <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="u_port" placeholder="Port Recviced message" disabled>
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea class="form-control" id="res" rows="12" onclick=""></textarea>
+                        </div>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="config_tb" class="modal fade bd-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title"><i class="ti-settings"></i> Config Table</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="number" class="form-control" id="time_rl" placeholder="Time Auto Reload Table (seconds)">
+                        </div>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="config_table()" class="btn btn-info btn-sm">Save</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/static/assets/js/ussd.js?v={{version}}"></script>
+{% endblock %}

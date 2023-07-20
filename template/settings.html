@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Sproxy {{name_device}} - {{tit}}{% endblock %}
+{% block body %}
+<style>
+.dropdown-menu-right{
+    left: 50px;
+}
+    </style>
+    <div class="card-block email-card">
+        <div class="row">
+            <!-- Left-side section start -->
+            <div class="col-lg-12 col-xl-3">
+                <div class="user-head row">
+                    <div class="user-face">
+                        <img src="/static/assets/images/sp.png" class="img-60 rounded-circle" alt="User-Profile-Image">
+                    </div>
+                    <div class="user-name">
+                        <span>Sproxy {{name_device}}</span>
+                        <span>Sproxy 4G</span>
+                    </div>
+                </div>
+                <div class="user-body">
+                    <div class="card ">
+                        <ul class="page-list">
+                            <li class="" id="u_general"><div class="mail-section"><a href="/html/settings/general"><i class="ti-folder"></i> General</a></div></li>
+                            <li class="" id="u_change_range_port"><div class="mail-section"><a href="/html/settings/change_range_port"><i class="fa fa-arrows-h"></i> Change Range Port</a></div></li>
+                            <li class="" id="u_change_password"><div class="mail-section"><a href="/html/settings/change_change_password"><i class="ti-lock"></i> Change Password</a></div></li>
+                            <li class="" id="u_protect"><div class="mail-section"><a href="/html/settings/protect"><i class="ti-shield"></i> Protect API , Proxy</a></div></li>
+                            <li class="" id="u_automation"><div class="mail-section"><a href="/html/settings/automation"><i class="fa fa-cogs"></i> Automation</a></div></li>
+                            <!-- <li class="" id="u_notification"><div class="mail-section"><a href="/html/settings/notification"><i class="fa fa-bullhorn"></i> Notification</a></div></li> -->
+                            <li class="" id="u_color"><div class="mail-section"><a href="/html/settings/color"><i class="ti-paint-bucket"></i> Theme Color</a></div></li>
+                            <!-- <li class="" id="u_dns_cf"><div class="mail-section"><a href="/html/settings/dns_cf"><i class="fa fa-coffee"></i> Auto DNS IP CloudFlare</a></div></li> -->
+                            <li class="" id="u_update"><div class="mail-section"><a href="/html/settings/update"><i class="ti-upload"></i> Update</a></div></li>
+                            <li class="" id="u_reboot"><div class="mail-section"><a href="/html/settings/reboot"><i class="fa fa-gear"></i> Reboot</a></div></li>
+                            <li class="" id="u_infomation"><div class="mail-section"><a href="/html/settings/infomation"><i class="ti-info"></i> Infomation</a></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Left-side section end -->
+            <!-- Right-side section start -->
+            <div class="col-lg-12 col-xl-9">
+                <div class="mail-box-head row">
+                    <div class="col-sm-3">
+                        <h3>{{tit}}</h3>
+                    </div>
+                    <div class="col-md-9">
+                        <form class="f-right">
+                            <div class="right-icon-control">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mail-body">
+                    <div class="mail-body-content">
+                            <div class="card">
+                            {% if tn == 'change_range_port' %}
+                                {% include 'setting/rangeport.html' %}
+                            {% elif tn == 'change_change_password' %}
+                                {% include 'setting/password.html' %}
+                            {% elif tn == 'protect' %}
+                                {% include 'setting/protect.html' %}
+                            {% elif tn == 'automation' %}
+                                {% include 'setting/automation.html' %}
+                            {% elif tn == 'notification' %}
+                                {% include 'setting/rangeport.html' %}
+                            {% elif tn == 'color' %}
+                                {% include 'setting/themecolor.html' %}
+                            {% elif tn == 'dns_cf' %}
+                                {% include 'setting/rangeport.html' %}
+                            {% elif tn == 'update' %}
+                                {% include 'setting/update.html' %}
+                            {% elif tn == 'reboot' %}
+                                {% include 'setting/reboot.html' %}
+                            {% elif tn == 'infomation' %}
+                                {% include 'setting/infomation/index.html' %}
+                            {% else %}
+                                {% include 'setting/general.html' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right-side section end -->
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/static/assets/js/settings.js"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+<div class="card-header">
+    <h5>Automation</h5>
+    <div class="card-header-right">
+        <i class="icofont icofont-refresh"></i>
+    </div>
+</div>
+<div class="card-block">
+        <form>
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <label class="col-form-label">Auto Change IP Public :<span class="text-danger"> *</span></label>
+                </div>
+                <div class="col-sm-12">
+                    <textarea type="text" class="form-control" id="autoch" rows="14" onchange="remove_char()"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-sm btn-success" onclick="set_autoip('post')"> SET</button>
+            </div>
+            <h3>Format :</h3>
+            <li class="text-success">If you turn off the ip public automatic change : <code>PORT:sconds</code> Example : <code>6666:0</code></li>
+            <li class="text-success">If you turn on the ip public automatic change : <code>PORT:sconds</code> Example : <code>6666:300</code></li>
+            <li class="text-primary">Each information is separated by line break</li>
+            <li class="text-danger">the minimum time is 30 seconds, time units are in seconds</li>
+        </form>
+</div>
+<script>
+$(function() {
+post('get_autoip',{},'post');
+})
+</script>

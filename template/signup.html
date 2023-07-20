@@ -1,0 +1,99 @@
+<body class="horizontal-fixed">
+    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+        <!-- Container-fluid starts -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+                    <div class="login-card card-block auth-body">
+                        <form class="md-float-material" method="post" id="f_sigup">
+                            <div class="text-center">
+                                <img src="/static/assets/images/auth/logo.png" alt="logo.png">
+                            </div>
+                            <div class="auth-box">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center txt-primary">Create Account System Management Sproxy</h3>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="username" placeholder="Enter Username" minlength="4">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter password" minlength="6">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="repassword" placeholder="reEnter password">
+                                    <span class="md-line"></span>
+                                </div>
+
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="submit" id="b_sigup" class="btn btn-primary btn-md waves-effect text-center m-b-20">Sigup</button>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="text-inverse text-left m-b-0">Thank you for use system.</p>
+                                        <p class="text-inverse text-left"><b><a href="https://fb.com/100006646270488">Deverloper by Shally9xPro</a></b></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="/static/assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end of form -->
+                    </div>
+                    <!-- Authentication card end -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+<![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+<script type="text/javascript">
+$(function() {  
+            $('#f_sigup').submit(function() {
+                event.preventDefault();
+                var username = $("#username").val(),password = $("#password").val(),repassword = $("#repassword").val();
+                if (username.length < 4){
+                    toastr["error"]('Account must be above 4 characters')
+                    return false;
+                }else if (password.length < 6){
+                    toastr["error"]('Password must be more than 6 characters')
+                    return false;
+                }else if (password !== repassword){
+                    toastr["error"]('Re-enter Password does not match')
+                    return false;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/ajax/signup',
+                    contentType: "application/json",
+                    data: JSON.stringify({'username':username,'password':password,'repassword':repassword}),
+                    success: function(data) {
+                        if (data.error_code === 0) {
+                            toastr["success"](data.message)
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            toastr["error"](data.message)
+                        }
+                    }
+                });
+            });
+});
+</script>

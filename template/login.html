@@ -1,0 +1,105 @@
+<body class="horizontal-fixed">
+    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+        <!-- Container-fluid starts -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+                    <div class="login-card card-block auth-body">
+                        <form class="md-float-material" method="post" id="f_login">
+                            <div class="text-center">
+                                <img src="/static/assets/images/auth/logo.png" alt="logo.png">
+                            </div>
+                            <div class="auth-box">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-left txt-primary">Sproxy Login</h3>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="username"  placeholder="Nhập Username">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password"  placeholder="Nhập Mật Khẩu">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="row m-t-25 text-left">
+                         <!--            <div class="col-sm-7 col-xs-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">Nhớ Mật Khẩu</span>
+                                            </label>
+                                        </div>
+                                    </div> -->
+                                  <!--   <div class="col-sm-5 col-xs-12 forgot-phone text-right">
+                                        <a href="#" onclick="swal('info', 'Đặt giá trị auth_user và auth_pass = 0 tại file config.ini\n Sau đó tại SSH console nhấn Ctrl+C để stop Proxy và Bật Lại Sproxy')" class="text-right f-w-600 text-inverse"> quên mật khẩu</a>
+                                    </div> -->
+                                </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="submit" id="login" class="btn btn-primary btn-md waves-effect text-center m-b-20">Login</button>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="text-inverse text-left m-b-0">Thank you for use system.</p>
+                                        <p class="text-inverse text-left"><b><a href="https://fb.com/100006646270488">Deverloper by Shally9xPro</a></b></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="/static/assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <!-- end of form -->
+                    </div>
+                    <!-- Authentication card end -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+    <!--[if lt IE 9]>
+<![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+<script type="text/javascript">
+$(function() {
+            $('#f_login').submit(function() {
+                event.preventDefault();
+                var username = $("#username").val(),password = $("#password").val();
+                if (username.length < 4){
+                    toastr["error"]('Account must be on 4 character')
+                    return false
+                }else if (password.length < 6){
+                    toastr["error"]('Password must be more than 6 characters')
+                    return false
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/ajax/login',
+                    headers: {'Content-Type': 'application/json'},
+                    contentType: "application/json",
+                    data: JSON.stringify({'username': username,'password': password}),
+                    success: function(data) {
+                        if (data.error_code === 0) {
+                            toastr["success"](data.message)
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            toastr["error"](data.message)
+                        }
+                    }
+                });
+            });
+});
+</script>

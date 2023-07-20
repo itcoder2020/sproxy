@@ -1,0 +1,9 @@
+[Unit]
+Description=Sproxy daemon
+After=network.target
+[Service]
+User=root
+WorkingDirectory=/home/Sproxy/hilink/
+ExecStart=/usr/local/bin/gunicorn --bind unix:/home/Sproxy/hilink/sproxy.sock -w 1 main
+[Install]
+WantedBy=multi-user.target

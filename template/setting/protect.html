@@ -1,0 +1,97 @@
+<div class="card-header">
+    <h5>Protect</h5>
+    <div class="card-header-right">
+        <i class="icofont icofont-refresh"></i>
+    </div>
+</div>
+<div class="card-block">
+    <form>
+        <div class="row form-group">
+            <div class="col-sm-3 col-lg-4">
+                <label class="col-form-label">Disable / Enable API Security<span class="text-danger"> *</span></label>
+            </div>
+            <div class="col-sm-9 col-lg-8">
+                <input type="checkbox" class="js-single" id="switch_api" onchange="api_change()"/>
+                <input type="hidden" id="switch_api2" value="0" />
+            </div>
+        </div>
+        <div class="row form-group" id="form-token">
+            <div class="col-sm-3">
+                <label class="col-form-label">Access_token <span class="text-danger"> *</span></label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="tokens" value="" onclick="select()">
+            </div>
+        </div>
+        <li class="text-primary">If API security is enabled, you need to add the <code>&access_token=TOKEN</code> field to the API URL</li>
+    </form>
+</div>
+<div class="card-block">
+    <form>
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <label class="col-form-label">Proxy account authentication :<span class="text-danger"> *</span></label>
+            </div>
+            <div class="col-sm-12">
+                <textarea type="text" class="form-control" id="proxypass" rows="12" onchange="remove_char()"></textarea>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <button type="button" id="setpass" class="btn btn-sm btn-success" onclick="set_account('post')"> SET</button>
+        </div>
+        <h3>Format :</h3>
+        <li class="text-success">If you turn off proxy account authentication : <code>PORT:off</code> Example : <code>6666:off</code></li>
+        <li class="text-success">If you turn on proxy account authentication : <code>PORT:USER:PASSWORD</code> Example : <code>6666:sproxy:bestproxy123</code></li>
+        <li class="text-primary">Each account information is separated by line break</li>
+        <li class="text-danger">Do not use special characters for the proxy account and password</li>
+    </form>
+</div>
+<script>
+var api_protect = '{{cfg['default']['api_protect']}}';
+var api_tokens = '{{cfg['default']['api_token']}}';
+var proxy_protect = '{{cfg['default']['proxy_protect']}}';
+var proxy_user = '{{cfg['default']['proxy_user']}}';
+var proxy_pass = '{{cfg['default']['proxy_pass']}}';
+$(function() {
+post('get_account',{},'post');
+if(api_protect == 'on'){
+turn_sw('switch_api',true);
+$('#tokens').val(api_tokens);
+$('#form-token').show();
+}else{
+turn_sw('switch_api',false); 
+$('#form-token').hide();
+}
+setTimeout(() => {
+  $('#switch_api2').val('1');
+}, 1000)
+})
+function repl(rows){
+ var row = rows.split(':'),new_row = '';
+for (var i = 0; i < row.length; i++) {
+   new_row+=row[i].replace(/([^0-9a-zA-Z])/g, '')+':';
+ }
+ return new_row;
+}
+function remove_char(){
+    var data = $('#proxypass').val(),text = '';
+    $('#proxypass').val('');
+    var lines = data.split("\n");
+    for (var i = 0; i < lines.length; i++) {
+        var rp = repl(lines[i]);
+        rp = rp.substring(0, rp.length -1)
+        if (rp.length > 6){
+            text+=rp+"\r\n";
+        }
+    }
+    $('#proxypass').val(text);
+}
+$(document).ready(function() {
+var elemsingle = document.querySelector('.js-single');
+var switchery = new Switchery(elemsingle, { color: '#1abc9c', jackColor: '#fff' });
+var elem = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+elem.forEach(function(html) {       
+    var switchery = new Switchery(html, { color: '#1abc9c', jackColor: '#fff' });       
+});     
+});
+</script>

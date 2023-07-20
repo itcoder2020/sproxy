@@ -1,0 +1,18 @@
+<div class="card-header">
+    <h5>Reboot</h5>
+    <div class="card-header-right">
+        <i class="icofont icofont-refresh"></i>
+    </div>
+</div>
+<div class="card-block">
+    {% if type_device == 'pc' %}
+        <button type="button" class="btn btn-warning btn-round" onclick="reboot('Shutdown System','shutdown')">Shutdown System</button>
+    {% endif %}
+    <button type="button" class="btn btn-success btn-round" onclick="reboot('System','system')">Reboot System</button>
+    <button type="button" class="btn btn-info btn-round" onclick="reboot('Sproxy Software','soft')">Reboot Sproxy Software</button>
+    {% if type_device == 'box' %}
+    <div class="mt-4">
+<li><span class="text-success">Notes: </span> <span>to safely power off the device, please Click Reboot system and then wait 20 seconds and unplug the power</span></li>
+</div>
+{% endif %}
+</div>
